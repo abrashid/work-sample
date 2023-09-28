@@ -1,5 +1,5 @@
 ### AZURE DEVOPS PIPELINE
-name: $(BuildDefinitionName)-$(Rev:rrr)
+name: $(BuildDefinitionName)
 
 trigger:
   branches:
@@ -21,12 +21,12 @@ parameters:
 ### DO NOT EDIT ###
 resources:
   repositories:
-    - repository: ado-core
+    - repository: repo-name
       type: git
-      name: AWS_ADO_PIPELINES
+      name: ADO_PIPELINES
 
 extends:
-  template: templates/pipeline-core.yml@ado-core
+  template: templates/pipeline-core.yml@repo-name
   parameters:
     stacksConfig: ${{ parameters.stacksConfig }}
     region: ${{ parameters.region }}

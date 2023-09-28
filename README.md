@@ -1,2 +1,2 @@
 # work-sample
-Simple work sample templates
+These are the sample templates to demo my expertise with IaC.

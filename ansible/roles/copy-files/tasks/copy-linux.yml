@@ -1,0 +1,15 @@
+---
+- name: Validate required parameters
+  assert:
+    that:
+      - FILE_SRC is defined
+      - FILE_DEST is defined
+      - FILE_OWNER is defined
+
+- name: "Copy {{ FILE_SRC }} to {{ FILE_DEST }}"
+  copy:
+    src: "{{ FILE_SRC }}"
+    dest: "{{ FILE_DEST }}"
+    owner: "{{ FILE_OWNER }}"
+    group: "{{ FILE_GROUP }}"
+    remote_src: yes

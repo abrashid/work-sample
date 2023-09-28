@@ -1,0 +1,6 @@
+---
+- include_tasks: copy-win.yml
+  when: ansible_os_family == "Windows"
+
+- include_tasks: copy-linux.yml
+  when: ansible_os_family != "Windows"

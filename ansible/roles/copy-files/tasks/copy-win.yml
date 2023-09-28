@@ -1,0 +1,6 @@
+---
+- name: "Copy {{ FILE_SRC }} to {{ FILE_DEST }}"
+  win_copy:
+    src: "{{ FILE_SRC }}"
+    dest: "{{ FILE_DEST }}"
+    remote_src: yes

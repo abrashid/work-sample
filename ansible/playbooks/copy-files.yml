@@ -1,0 +1,7 @@
+---
+- name: "Copy files to {{ TARGET_HOST }}"
+  hosts: "{{ TARGET_HOST }}"
+  tasks:
+  - name: Copy files role
+    import_role:
+      name: copy-files

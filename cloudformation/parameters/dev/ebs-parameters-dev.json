@@ -1,0 +1,18 @@
+[
+  {
+    "ParameterKey": "volumesize",
+    "ParameterValue": "100"
+  },
+  {
+    "ParameterKey": "volumetype",
+    "ParameterValue": "gp3"
+  },
+  {
+    "ParameterKey": "az",
+    "ParameterValue": "eu-west-1a"
+  },
+  {
+    "ParameterKey": "KmsKeyId",
+    "ParameterValue": "arn:aws:kms:eu-west-1:<ACCOUNT_ID>:key/ad8e1c5a..."
+  }
+]

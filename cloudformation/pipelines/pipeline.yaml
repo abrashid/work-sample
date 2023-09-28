@@ -1,0 +1,32 @@
+### AZURE DEVOPS PIPELINE
+name: $(BuildDefinitionName)-$(Rev:rrr)
+
+trigger:
+  branches:
+    include:
+       - development
+
+### CONFIGURATION - EDIT ACCORDINGLY ###
+parameters:
+- name: region
+  type: string
+  default: eu-west-1
+  values:
+  - eu-west-1
+- name: stacksConfig
+  type: object
+  default:
+  - name: ebs
+
+### DO NOT EDIT ###
+resources:
+  repositories:
+    - repository: ado-core
+      type: git
+      name: AWS_ADO_PIPELINES
+
+extends:
+  template: templates/pipeline-core.yml@ado-core
+  parameters:
+    stacksConfig: ${{ parameters.stacksConfig }}
+    region: ${{ parameters.region }}

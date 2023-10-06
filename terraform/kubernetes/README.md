@@ -1,12 +1,11 @@
-Install Kubernetes on local Macbook
-===================================
+# Install Kubernetes on local Macbook
 
 # Use the package manager homebrew to install kind.
 ```
 brew install kind
 ```
 
-# download and save the kind configuration into a file named kind-config.yaml. This configuration adds extra port mappings, so you can access the NGINX service locally later.
+# Download and save the kind configuration into a file named kind-config.yaml. This configuration adds extra port mappings, so you can access the NGINX service locally later.
 ```
 curl https://raw.githubusercontent.com/hashicorp/learn-terraform-deploy-nginx-kubernetes-provider/main/kind-config.yaml --output kind-config.yaml
 ```
@@ -53,7 +52,7 @@ client_key             = "LS0tLS1CRUdJTiB..."
 cluster_ca_certificate = "LS0tLS1CRUdJTiB..."
 ```
 
-# host posrt number could be different. Check the port number is same in the var file.
+# Host port number could be different. Check the port number is same in the var file.
 
 # After configuring the provider, run terraform init to download the latest version and initialize your Terraform workspace.
 ```

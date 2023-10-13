@@ -1,16 +1,12 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: EBS Volume
+
 Parameters:
-  KmsKeyId:
-    Description: kms key id
-    Type: String
   az:
-    Default: eu-west-1a
     Description: Availability zone
     Type: 'AWS::EC2::AvailabilityZone::Name'
   volumetype:
     Description: Volume type
-    Default: gp3
     Type: String
     AllowedValues:
       - gp3
@@ -29,7 +25,7 @@ Resources:
       Size: !Ref volumesize
       VolumeType: !Ref volumetype
       Encrypted: true
-      KmsKeyId: !Ref KmsKeyId
+      KmsKeyId: !ImportValue testkms-KeyId
       Tags:
         - Key: Name
           Value: !Sub '${AWS::StackName}'
@@ -40,6 +36,6 @@ Outputs:
   VolumeIdOutput:
     Description: EBS Volume Id Output
     Export:
-      Name: !Sub '${AWS::StackName}-id'
+      Name: !Sub '${AWS::StackName}-VolumeId'
     Value: !Ref Volume
 

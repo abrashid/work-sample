@@ -1,0 +1,55 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: Deploys a KMS Key, policy, alias and IAM policies for administrators and users.
+
+
+Parameters:
+  KMSKeyAlias:
+    Type: String
+    Description: KMS Key Alias
+    AllowedPattern: '[a-zA-Z0-9\-]*'
+
+  KMSKeyDescription:
+    Type: String
+    Description: KMS key for X application
+    AllowedPattern: '[a-zA-Z0-9 \-@\.]*'
+
+Resources:
+
+  CustomerKMSKey:
+    DeletionPolicy: Retain
+    Type: AWS::KMS::Key
+    Properties:
+      Description: !Ref KMSKeyDescription
+      EnableKeyRotation: true
+      Enabled: true
+      KeyPolicy:
+        Version: 2012-10-17
+        Id: !Ref AWS::StackName
+        Statement:
+         -
+            Sid: Enable IAM User Permissions
+            Effect: Allow
+            Principal:
+              AWS: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:root"
+            Action: kms:*
+            Resource: "*"
+
+  KeyAlias:
+    DeletionPolicy: Retain
+    Type: AWS::KMS::Alias
+    Properties:
+      AliasName: !Sub "alias/${KMSKeyAlias}"
+      TargetKeyId: !Ref CustomerKMSKey
+
+Outputs:
+  KeyId:
+    Description: Key id
+    Value: !Ref CustomerKMSKey
+    Export:
+      Name: !Sub '${AWS::StackName}-KeyId'
+  KeyArn:
+    Description: Key ARN
+    Value: !GetAtt CustomerKMSKey.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-KeyArn'
